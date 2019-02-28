@@ -2,10 +2,28 @@
 
 import discord
 
+import random
+
+answers=[
+    "Yup, Quake was a good game",
+    "Yup, Halo was a good game",
+    "Yup, Doom was a good game",
+    "Yup, Half-Life was a good game",
+    "Yup, GoldenEye was a good game",
+    ]
+
+commands='Commands are as follow: !crack, !hello, !bestsip, !saturday, !college, !weekend'
+
+
+
+
 client = discord.Client()
+
+
 
 @client.event
 async def on_message(message):
+
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
@@ -15,7 +33,25 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
 
     elif message.content.startswith('!crack'):
-        await client.send_message(message.channel, 'Yup, Quake was a good game')
+        await client.send_message(message.channel, random.choice(answers) )
+
+    elif message.content.startswith('!bestsip'):
+        await client.send_message(message.channel, 'The Blue Sip is the best sip')
+
+    elif message.content.startswith('!weekend'):
+        await client.send_message(message.channel, '<:Boomer:530133498359709697> <:Sip:531274168671535106>') 
+        # this command isn't useful outside of Boomer Box Discord
+    elif message.content.startswith('!saturday'):
+        await client.send_message(message.channel, 'https://www.youtube.com/watch?v=i9r_nMzdTu4')
+
+    elif message.content.startswith('!college'):
+        await client.send_message(message.channel, 'https://cdn.discordapp.com/attachments/525463450797735938/550466934718857217/b2c.png')
+
+    elif message.content.startswith('!help'):
+        await client.send_message(message.channel, (commands))
+
+
+
 
 @client.event
 async def on_ready():
@@ -24,4 +60,4 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-client.run('Token')
+client.run('Token') #insert your own Bots token here
